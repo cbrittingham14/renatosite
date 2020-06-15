@@ -4,7 +4,12 @@ const StoreContext = createContext();
 const { Provider } = StoreContext;
 
 const reducer = (state, action) => {
-  switch (action) {
+  switch (action.type) {
+    case 'add':
+      state.cart = action.payload;
+      return {
+        ...state
+      }
     default:
       return state;
   }
@@ -13,6 +18,7 @@ const reducer = (state, action) => {
 const StoreProvider = ({...props}) => {
   const [state, dispatch] = useReducer(reducer , {
     //default state here
+    cart: null
   });
   return <Provider value={[state, dispatch]} {...props} />
 };
