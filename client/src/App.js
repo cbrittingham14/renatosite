@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router} from "react-router-dom";
 import './App.css';
 import ShopItem from './components/ShopItem';
 import { StoreProvider } from './utils/GlobalState';
