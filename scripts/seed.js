@@ -16,6 +16,20 @@ const shopSeed = [
     description: 'This is a beautiful piece of art',
     category: 'Jewelry',
     price: 200
+  },
+  {
+    name: 'T-shirt',
+    imageURL: 'anotherurl',
+    description: 'A must have for any humon',
+    category: 'Clothing',
+    price: 20
+  },
+  {
+    name: 'Sick bracelet',
+    imageURL: 'yetanotherurl',
+    description: 'This puppy will set you free',
+    category: 'Jewelry',
+    price: 60
   }
 ];
 
