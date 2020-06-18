@@ -1,9 +1,9 @@
 import React from 'react';
 import { BrowserRouter as Router} from "react-router-dom";
 import './App.css';
-import ShopItem from './components/ShopItem';
 import { StoreProvider } from './utils/GlobalState';
 import Nav from './components/Nav';
+import MainPage from './pages/MainPage';
 
 function App() {
   return (
@@ -11,7 +11,7 @@ function App() {
       <div className="App">
         <StoreProvider>
           <Nav />
-          <ShopItem />
+          <MainPage />
         </StoreProvider>
       </div>
     </Router>
