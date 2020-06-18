@@ -12,7 +12,6 @@ function Nav() {
       <Link className='nav-link' to='#'>My Cart</Link>
     </nav>
   )
-  
 };
 
 export default Nav;
