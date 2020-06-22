@@ -6,4 +6,8 @@ export default {
     return axios.get('/api/shopitems');
   },
 
+  addShopItem: function(newItem){
+    return axios.post('/api/addnew', newItem)
+  }
+
 };

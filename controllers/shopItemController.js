@@ -11,5 +11,11 @@ module.exports = {
   findById: function (req, res){
     db.ShopItem.findById(req.params.id).then(i => res.json(i))
     .catch(err => res.status(422).json(err));
+  },
+
+  addNew: function(req, res) {
+    console.log('REQ.BODY: ', req.body);
+    db.ShopItem.create(req.body).then(i => res.json(i))
+    .catch(err => res.status(422).json(err));
   }
-}
+};

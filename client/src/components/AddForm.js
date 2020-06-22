@@ -1,19 +1,30 @@
 import React, { useRef } from 'react';
+import API from '../utils/API';
 
 function AddForm () {
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log('categoryRef: ', categoryRef.current.value);
-    console.log('name: ', document.getElementById('nameInput').value);
-    console.log('category: ', document.getElementById('category').value);
-  };
 
   const nameRef = useRef();
   const descriptionRef = useRef();
   const categoryRef = useRef();
   const priceRef = useRef();
   const imageRef = useRef();
+  
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const itemToAdd = {
+      name: nameRef.current.value,
+      description: descriptionRef.current.value,
+      category: categoryRef.current.value,
+      price: parseInt(priceRef.current.value),
+      imageURL: imageRef.current.value
+    }
+    
+    API.addShopItem(itemToAdd).then(res => {
+      console.log('RES in API: ',res);
+    }).catch(err=>console.log(err));
+    
+  };
 
   const setForm = () => {
     return(
