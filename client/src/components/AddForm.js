@@ -8,22 +8,31 @@ function AddForm () {
   const categoryRef = useRef();
   const priceRef = useRef();
   const imageRef = useRef();
-  
-  const handleSubmit = (e) => {
-    e.preventDefault();
 
+  const clearInputs = () => {
+    nameRef.current.value = '';
+    descriptionRef.current.value = '';
+    categoryRef.current.value = '';
+    priceRef.current.value = '';
+    imageRef.current.value = '';
+  };  
+
+  const handleSubmit = (e) => {
+
+    e.preventDefault();
     const itemToAdd = {
       name: nameRef.current.value,
       description: descriptionRef.current.value,
       category: categoryRef.current.value,
       price: parseInt(priceRef.current.value),
       imageURL: imageRef.current.value
-    }
+    };
     
     API.addShopItem(itemToAdd).then(res => {
       console.log('RES in API: ',res);
     }).catch(err=>console.log(err));
-    
+
+    clearInputs();
   };
 
   const setForm = () => {
