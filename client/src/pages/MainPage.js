@@ -10,13 +10,11 @@ function MainPage (){
   let shopItems = [];
 
   const setRender =  () => {
-    let itemArray = state.displayItems;
-    if(itemArray) {
-     shopItems = itemArray.map(e => {
+    if(state.displayItems) {
+     shopItems = state.displayItems.map(e => {
         return <ShopItem props={e} key={e._id} />
       });
     }
-  
   };
 
   useEffect(()=>{
