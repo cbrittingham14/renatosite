@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useStoreContext } from '../utils/GlobalState';
 import ShopItem from '../components/ShopItem';
 import API from '../utils/API';
+import AddForm from '../components/AddForm';
 
 
 function MainPage (){
@@ -27,6 +28,7 @@ function MainPage (){
     <div>
       {setRender()}
       {shopItems}
+      <AddForm />
     </div>
   )
 };
