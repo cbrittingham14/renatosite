@@ -29,7 +29,6 @@ function MainPage (){
     <div>
       {setRender()}
       {shopItems}
-      <ShopItem />
     </div>
   )
 };

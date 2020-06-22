@@ -6,7 +6,6 @@ function ShopItem( props ) {
   const [state, dispatch] = useStoreContext();
 
   const addToCart = (e) => {
-    console.log('e ', e);
     dispatch({type: 'add', payload: e});
     console.log('state', state);
   }
