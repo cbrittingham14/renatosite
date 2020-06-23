@@ -4,6 +4,7 @@ import './App.css';
 import { StoreProvider } from './utils/GlobalState';
 import Nav from './components/Nav';
 import MainPage from './pages/MainPage';
+import SearchAndFilter from './components/SearchAndFilter';
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       <div className="App">
         <StoreProvider>
           <Nav />
+          <SearchAndFilter />
           <MainPage />
         </StoreProvider>
       </div>
