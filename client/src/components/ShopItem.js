@@ -18,6 +18,9 @@ function ShopItem( props ) {
           <div className='card-body'>
             <h5 className='card-title'>{e.props.name}</h5>
             <p className='card-text'>{e.props.description}</p>
+            <ul className='list-group list-group-flush'>
+              <li className='list-group-item'>${e.props.price}</li>
+            </ul>
             <button className='btn btn-primary' onClick={()=> addToCart(e.props._id)}>Add to Cart</ button>
           </div>
         </div>
