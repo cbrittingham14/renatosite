@@ -13,6 +13,16 @@ module.exports = {
     .catch(err => res.status(422).json(err));
   },
 
+  findClothing: function(req, res){
+    db.ShopItem.find({ category: 'Clothing' }).then(i => res.json(i))
+    .catch(err => res.status(422).json(err));
+  },
+
+  findJewelry: function(req, res){
+    db.ShopItem.find({ category: 'Jewelry' }).then(i=> res.json(i))
+    .catch(err=> res.status(422).json(err));
+  },
+
   addNew: function(req, res) {
     db.ShopItem.create(req.body).then(i => res.json(i))
     .catch(err => res.status(422).json(err));

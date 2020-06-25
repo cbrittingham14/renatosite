@@ -11,38 +11,68 @@ function SearchAndFilter (){
   const categoryRef = useRef();
   const sortRef = useRef();
 
-  const handleChange = (e) => {
+  const setFilter = (value) => {
+    switch(value){
+      case 'Jewelry':
+        console.log(typeof API.getJewelry)
+        API.getJewelry().then(({ data })=> {
+          console.log('jewelryitems: ', data);
+          dispatch({ type: 'set-display', payload: data});
+        }).catch(err=> console.log(err));
+      break
+      case 'Clothing':
+        API.getClothing().then(({ data })=> {
+          console.log('clothingitems: ', data);
+          dispatch({ type: 'set-display', payload: data});
+        }).catch(err=> console.log(err));
+      break
+      case 'All':
+        API.getAll().then(({ data })=> {
+          dispatch({ type: 'set-display', payload: data});
+        }).catch(err=>console.log(err));
+    }
+  };
 
+  const handleChange = (e) => {
     e.preventDefault();
     clearTimeout(timeoutID);
+    const { name, value } = e.target;
 
-    timeoutID = setTimeout(()=> {
-        API.regexSearch(searchRef.current.value)
-        .then( ({ data }) => {
-          console.log('DATA: ', data);
-          console.log('TYPEOF: ', typeof data);
-          if(typeof data === 'object'){
-            dispatch({ type: 'set-display', payload: data });
-          }
-        }).catch(err=> console.log(err));
-    }, 550)
+    switch(name){
+      case 'category':
+        setFilter(value);
+      break
+      
+      case 'regex-search':
+        timeoutID = setTimeout(()=> {
+          API.regexSearch(searchRef.current.value)
+          .then( ({ data }) => {
+            console.log('DATA: ', data);
+            console.log('TYPEOF: ', typeof data);
+            if(typeof data === 'object'){
+              dispatch({ type: 'set-display', payload: data });
+            }
+          }).catch(err=> console.log(err));
+      }, 550);
+      break
+    };
+  };
 
-  }
   const setHtml = () => {
     return (
       <div className='row'>
         <div className='col'>
-          <input type='text' placeholder='Search' onChange ={handleChange} ref={searchRef}/>
+          <input type='text' placeholder='Search' name='regex-search' onChange ={handleChange} ref={searchRef}/>
         </div>
         <div className='col'>
-          <select ref={categoryRef} >
+          <select ref={categoryRef} name='category' onChange={handleChange}>
             <option>All</option>
             <option>Clothing</option>
             <option>Jewelry</option>
           </select>
         </div>
         <div className='col'>
-          <select ref={sortRef}>
+          <select ref={sortRef} name='sort'>
             <option>Price High to Low</option>
             <option>Price Low to High</option>
           </select>
