@@ -14,8 +14,16 @@ module.exports = {
   },
 
   addNew: function(req, res) {
-    console.log('REQ.BODY: ', req.body);
     db.ShopItem.create(req.body).then(i => res.json(i))
+    .catch(err => res.status(422).json(err));
+  },
+  regexSearch: function (req, res){
+    db.ShopItem.find({
+      $or: [
+        {name: { '$regex': req.params.query, '$options': 'i' }},
+        {description: { '$regex': req.params.query, '$options': 'i' }}
+      ]
+    }).then(i => res.json(i))
     .catch(err => res.status(422).json(err));
   }
 };

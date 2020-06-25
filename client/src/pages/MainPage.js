@@ -3,8 +3,6 @@ import { useStoreContext } from '../utils/GlobalState';
 import ShopItem from '../components/ShopItem';
 import API from '../utils/API';
 import AddForm from '../components/AddForm';
-import SearchAndFilter from '../components/SearchAndFilter';
-
 
 function MainPage (){
 
@@ -31,6 +29,6 @@ function MainPage (){
       {shopItems}
       <AddForm />
     </div>
-  )
+  );
 };
 export default MainPage;

@@ -8,6 +8,10 @@ export default {
 
   addShopItem: function(newItem){
     return axios.post('/api/addnew', newItem)
+  },
+
+  regexSearch: function (query){
+    return axios.get('/api/regex/' + query);
   }
 
 };
