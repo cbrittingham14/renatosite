@@ -30,9 +30,26 @@ function SearchAndFilter (){
         API.getAll().then(({ data })=> {
           dispatch({ type: 'set-display', payload: data});
         }).catch(err=>console.log(err));
+      break
+      case 'default':
+        console.log('hit default');
     }
   };
 
+  const setSort = (value) => {
+    const orderedList = state.displayItems;
+    switch(value){
+      case 'Price High to Low':
+        orderedList.sort((a,b) => b.price - a.price);
+        dispatch({ type: 'set-display', payload: orderedList });
+      break
+      case 'Price Low to High':
+        orderedList.sort((a,b) => a.price - b.price);
+        dispatch({ type: 'set-display', payload: orderedList });
+      break
+
+    }
+  };
   const handleChange = (e) => {
     e.preventDefault();
     clearTimeout(timeoutID);
@@ -42,7 +59,6 @@ function SearchAndFilter (){
       case 'category':
         setFilter(value);
       break
-      
       case 'regex-search':
         timeoutID = setTimeout(()=> {
           API.regexSearch(searchRef.current.value)
@@ -55,6 +71,11 @@ function SearchAndFilter (){
           }).catch(err=> console.log(err));
       }, 550);
       break
+      case 'sort':
+        setSort(value);
+      break
+      case 'default':
+        console.log('hit default');
     };
   };
 
@@ -72,7 +93,7 @@ function SearchAndFilter (){
           </select>
         </div>
         <div className='col'>
-          <select ref={sortRef} name='sort'>
+          <select ref={sortRef} onChange={handleChange} name='sort'>
             <option>Price High to Low</option>
             <option>Price Low to High</option>
           </select>
